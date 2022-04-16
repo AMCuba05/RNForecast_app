@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {AutoCompleteCountrySearch} from '../../components/AutoCompleteCountrySearch';
-import {View, Text, ScrollView} from 'react-native';
+import { View, Text, ScrollView, SafeAreaView } from "react-native";
 import MainStyles from './styles';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../redux/reducers';
@@ -63,23 +63,25 @@ export const Main = () => {
   };
 
   return (
-    <ScrollView style={MainStyles.container}>
-      <Text style={MainStyles.title}>Forecast App</Text>
-      <AutoCompleteCountrySearch
-        countries={countries}
-        onSelectItem={getWeatherData}
-      />
-      {weather ? (
-        <WeatherCard data={weather} countryName={selectedCountry} />
-      ) : null}
-      {dataSaved ? (
-        <View>
-          <Text style={MainStyles.title}>Previus search</Text>
-          {dataSaved.map(({data, country}) => (
-            <WeatherCard data={data} countryName={country} />
-          ))}
-        </View>
-      ) : null}
-    </ScrollView>
+    <SafeAreaView>
+      <ScrollView style={MainStyles.container}>
+        <Text style={MainStyles.title}>Forecast App</Text>
+        <AutoCompleteCountrySearch
+          countries={countries}
+          onSelectItem={getWeatherData}
+        />
+        {weather ? (
+          <WeatherCard data={weather} countryName={selectedCountry} />
+        ) : null}
+        {dataSaved ? (
+          <View>
+            <Text style={MainStyles.title}>Previus search</Text>
+            {dataSaved.map(({data, country}) => (
+              <WeatherCard data={data} countryName={country} />
+            ))}
+          </View>
+        ) : null}
+      </ScrollView>
+    </SafeAreaView>
   );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
-import {Text, TouchableOpacity, View} from 'react-native';
+import { SafeAreaView, Text, TouchableOpacity, View } from "react-native";
 import Icon from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/native';
 import {MapViewStyles} from './styles';
@@ -16,7 +16,7 @@ export const MapViewScreen: React.FC<MapViewProps> = ({route}) => {
 
   const onPressBack = () => navigation.goBack();
   return (
-    <View>
+    <SafeAreaView>
       <View style={MapViewStyles.headerContainer}>
         <TouchableOpacity style={MapViewStyles.button} onPress={onPressBack}>
           <Icon name={'left'} size={30} color={'#010048'} />
@@ -33,6 +33,6 @@ export const MapViewScreen: React.FC<MapViewProps> = ({route}) => {
           longitudeDelta: 15,
         }}
       />
-    </View>
+    </SafeAreaView>
   );
 };
